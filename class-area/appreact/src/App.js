@@ -1,7 +1,22 @@
-import React from 'react';
+import React from 'react'
 
 const App = () => {
-  return <div></div>
+  const [ativo, setAtivo] = React.useState(false);
+  const [dados, setDados] = React.useState({nome: 'Victor', idade: '18'});
+
+  function handleClick() {
+    setAtivo(!ativo);
+    setDados({...dados, faculdade: 'O Usuário possui faculdade.'})
+  }
+
+  return (
+    <div>
+      <p>{dados.nome}</p>
+      <p>{dados.idade}</p>
+      <p>{dados.faculdade}</p>
+      <button onClick={handleClick}>{ativo ? 'Ativo' : 'Inativo'}</button>
+    </div>
+  )
 }
  
 
@@ -119,3 +134,21 @@ const App = () => {
   </section>
   );
 }; */
+
+// Código 04 - Desáfio de Propiedades (Necessário os outros arquivos js, como Header, Home, Produto, Produtos e Titulo):
+
+/* const App = () => {
+  const {pathname} = window.location;
+  
+  let Pagina;
+  if(pathname === '/produtos') {
+    Pagina = Produtos;
+  } else {
+    Pagina = Home;
+  }
+
+  return <div>
+    <Header />
+    <Pagina />
+  </div>
+} */
