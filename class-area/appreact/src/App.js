@@ -1,24 +1,8 @@
-import React from 'react'
+import React from "react";
 
 const App = () => {
-  const [ativo, setAtivo] = React.useState(false);
-  const [dados, setDados] = React.useState({nome: 'Victor', idade: '18'});
-
-  function handleClick() {
-    setAtivo(!ativo);
-    setDados({...dados, faculdade: 'O Usuário possui faculdade.'})
-  }
-
-  return (
-    <div>
-      <p>{dados.nome}</p>
-      <p>{dados.idade}</p>
-      <p>{dados.faculdade}</p>
-      <button onClick={handleClick}>{ativo ? 'Ativo' : 'Inativo'}</button>
-    </div>
-  )
-}
- 
+  return <div></div>;
+};
 
 export default App;
 
@@ -89,7 +73,7 @@ const App = () => {
 
 }; */
 
-// Código - 03: 
+// Código - 03:
 
 /* // Organize os produtos como mostrado no vídeo
 // Mostre apenas produtos que forem mais caros que R$ 1500
@@ -152,3 +136,36 @@ const App = () => {
     <Pagina />
   </div>
 } */
+
+// Código 05 - Utilizando useState para manipular uma fetch a partir de um handleClick (Necessário o arquivo 'ProdutoState.js' para entender o código):
+
+/* const App = () => {
+  const [dados, setDados] = React.useState(null);
+  const [carregando, setCarregando] = React.useState(null);
+
+  async function handleClick(event) {
+    setCarregando(true);
+    const r = await fetch(
+      `https://ranekapi.origamid.dev/json/api/produto/${event.target.innerText}`,
+    );
+    const json = await r.json();
+    setDados(json);
+    setCarregando(false);
+  }
+
+  return (
+    <div>
+      <button style={{ margin: ".5rem" }} onClick={handleClick}>
+        Notebook
+      </button>
+      <button style={{ margin: ".5rem" }} onClick={handleClick}>
+        Smartphone
+      </button>
+      <button style={{ margin: ".5rem" }} onClick={handleClick}>
+        Tablet
+      </button>
+      {carregando && <p>Carregando...</p>}
+      {!carregando && dados && <ProdutoState dados={dados} />}
+    </div>
+  );
+}; */
