@@ -6,7 +6,7 @@ const App = () => {
 
 export default App;
 
-// Segue abaixo todo e qualquer tipo de código utilizando durante o aprendizado do curso de React, irei deixar-los como COMENTADOS para evitar conflito dentro do código, já que irei reutilizar o código principal diversas vezes.
+// Segue abaixo todo e qualquer tipo de cógdigo utilizando durante o aprendizado do curso de React, irei deixar-los como COMENTADOS para evitar conflito dentro do código, já que irei reutilizar o código principal diversas vezes.
 
 /* // Mostre os dados da aplicação, como aprensetado no vídeo
 // Não utilize CSS externo, use o style para mudar as cores
@@ -166,6 +166,34 @@ const App = () => {
       </button>
       {carregando && <p>Carregando...</p>}
       {!carregando && dados && <ProdutoState dados={dados} />}
+    </div>
+  );
+}; */
+
+// Código 06 - useEffect 1/2:
+
+/* const App = () => {
+  const Produto = () => {
+    React.useEffect(() => {
+      function handleScroll(event) {
+        console.log(event);
+      }
+      window.addEventListener("scroll", handleScroll);
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    }, []);
+
+    return <p style={{ height: "200vh" }}>Produto</p>;
+  };
+
+  const [ativo, setAtivo] = React.useState(false);
+
+  return (
+    <div>
+      <p>Meu App</p>
+      <button onClick={() => setAtivo(!ativo)}>Abrir</button>
+      {ativo && <Produto />}
     </div>
   );
 }; */
