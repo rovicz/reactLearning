@@ -1,7 +1,32 @@
 import React from "react";
+import ProdutoEffect from "./ProdutoEffect";
 
 const App = () => {
-  return <div></div>;
+  const [produto, setProduto] = React.useState(null);
+
+  function handleClick({ target }) {
+    setProduto(target.innerText);
+  }
+
+  React.useEffect(() => {
+    const produtoLocal = window.localStorage.getItem("produto");
+    if (produtoLocal !== null) setProduto(produtoLocal);
+  }, []);
+
+  React.useEffect(() => {
+    if (produto === null) window.localStorage.setItem("produto", produto);
+  }, [produto]);
+
+  return (
+    <div>
+      <h1>Preferência: {produto}</h1>
+      <button onClick={handleClick} style={{ marginRight: "1rem" }}>
+        Notebook
+      </button>
+      <button onClick={handleClick}>Smartphone</button>
+      <ProdutoEffect produto={produto} />
+    </div>
+  );
 };
 
 export default App;
