@@ -1,30 +1,24 @@
 import React from "react";
-import ProdutoEffect from "./ProdutoEffect";
 
 const App = () => {
-  const [produto, setProduto] = React.useState(null);
+  const [carrinho, setCarrinho] = React.useState(0);
+  const [notificacao, setNotificacao] = React.useState(null);
+  const refNotificacao = React.useRef();
 
-  function handleClick({ target }) {
-    setProduto(target.innerText);
+  function handleClick() {
+    setCarrinho(carrinho + 1);
+    setNotificacao("Item adicionado ao Carrinho.");
+
+    clearTimeout(refNotificacao.current);
+    refNotificacao.current = setTimeout(() => {
+      setNotificacao(null);
+    }, 2000);
   }
-
-  React.useEffect(() => {
-    const produtoLocal = window.localStorage.getItem("produto");
-    if (produtoLocal !== null) setProduto(produtoLocal);
-  }, []);
-
-  React.useEffect(() => {
-    if (produto === null) window.localStorage.setItem("produto", produto);
-  }, [produto]);
 
   return (
     <div>
-      <h1>Preferência: {produto}</h1>
-      <button onClick={handleClick} style={{ marginRight: "1rem" }}>
-        Notebook
-      </button>
-      <button onClick={handleClick}>Smartphone</button>
-      <ProdutoEffect produto={produto} />
+      <p ref={refNotificacao}>{notificacao}</p>
+      <button onClick={handleClick}>Adicionar Carrinho {carrinho}</button>
     </div>
   );
 };
@@ -62,7 +56,7 @@ const mario = {
 
 const App = () => {
   const dados = mario;
-  const valorTotal = dados.compras.map((item) => 
+  const valorTotal = dados.compras.map((item) =>
     Number(item.preco.replace('R$ ', '')))
     .reduce((a, b) => a + b);
 
@@ -126,7 +120,7 @@ const produtos = [
 const App = () => {
   return (
     <section>
-      {produtos.filter((produto) => Number(produto.preco.replace('R$ ', '')) > 1500) 
+      {produtos.filter((produto) => Number(produto.preco.replace('R$ ', '')) > 1500)
             .map((produto) => (
               <div key={produto.id}>
                 <h1>{produto.nome}</h1>
@@ -148,7 +142,7 @@ const App = () => {
 
 /* const App = () => {
   const {pathname} = window.location;
-  
+
   let Pagina;
   if(pathname === '/produtos') {
     Pagina = Produtos;
