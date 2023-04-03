@@ -1,26 +1,7 @@
 import React from "react";
 
 const App = () => {
-  const [carrinho, setCarrinho] = React.useState(0);
-  const [notificacao, setNotificacao] = React.useState(null);
-  const refNotificacao = React.useRef();
-
-  function handleClick() {
-    setCarrinho(carrinho + 1);
-    setNotificacao("Item adicionado ao Carrinho.");
-
-    clearTimeout(refNotificacao.current);
-    refNotificacao.current = setTimeout(() => {
-      setNotificacao(null);
-    }, 2000);
-  }
-
-  return (
-    <div>
-      <p ref={refNotificacao}>{notificacao}</p>
-      <button onClick={handleClick}>Adicionar Carrinho {carrinho}</button>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default App;
@@ -216,3 +197,37 @@ const App = () => {
     </div>
   );
 }; */
+
+// Código 07 - useRef:
+
+/* const App = () => {
+  const [carrinho, setCarrinho] = React.useState(0);
+  const [notificacao, setNotificacao] = React.useState(null);
+  const refNotificacao = React.useRef();
+
+  function handleClick() {
+    setCarrinho(carrinho + 1);
+    setNotificacao("Item adicionado ao Carrinho.");
+
+    clearTimeout(refNotificacao.current);
+    refNotificacao.current = setTimeout(() => {
+      setNotificacao(null);
+    }, 2000);
+  }
+
+  return (
+    <div>
+      <p ref={refNotificacao}>{notificacao}</p>
+      <button onClick={handleClick}>Adicionar Carrinho {carrinho}</button>
+    </div>
+  ); */
+
+// Código 08 - createContext & useContext (necessário os arquivos 'GlobalContext' e 'ProdutoContext' para compreender o código final):
+
+/* const App = () => {
+  return (
+    <GlobalStorage>
+      <ProdutoContext />
+    </GlobalStorage>
+  );
+  */
