@@ -1,13 +1,16 @@
 import React from "react";
 
+const coresArray = ["azul", "roxo", "laranja", "verde", "vermelho", "cinza"];
+
 const App = () => {
   const [cores, setCores] = React.useState([]);
 
   function handleChange({ target }) {
-    if (target.checked) {
+    const { checked, value } = target;
+    if (checked) {
       setCores([...cores, target.value]);
     } else {
-      setCores(cores.filter((cor) => cor !== target.value));
+      setCores(cores.filter((cor) => cor !== value));
     }
   }
 
@@ -17,24 +20,22 @@ const App = () => {
 
   return (
     <form>
-      <label>
-        <input
-          type="checkbox"
-          value="azul"
-          checked={handleChecked("azul")}
-          onChange={handleChange}
-        />
-        Azul
-      </label>
-      <label>
-        <input
-          type="checkbox"
-          value="vermelho"
-          checked={handleChecked("vermelho")}
-          onChange={handleChange}
-        />
-        Vermelho
-      </label>
+      {coresArray.map((cor) => (
+        <label key={cor} style={{ textTransform: "capitalize" }}>
+          <input
+            type="checkbox"
+            value={cor}
+            checked={handleChecked(cor)}
+            onChange={handleChange}
+          />
+          {cor}
+        </label>
+      ))}
+      <ul>
+        {cores.map((cor) => (
+          <li key={cor}>{cor}</li>
+        ))}
+      </ul>
     </form>
   );
 };
@@ -277,6 +278,47 @@ const App = () => {
           onChange={handleChange}
         />
         Smartphone
+      </label>
+    </form>
+  );
+}; */
+
+// Código 07 - Checkbox:
+
+/* const App = () => {
+  const [cores, setCores] = React.useState([]);
+
+  function handleChange({ target }) {
+    if (target.checked) {
+      setCores([...cores, target.value]);
+    } else {
+      setCores(cores.filter((cor) => cor !== target.value));
+    }
+  }
+
+  function handleChecked(cor) {
+    return cores.includes(cor);
+  }
+
+  return (
+    <form>
+      <label>
+        <input
+          type="checkbox"
+          value="azul"
+          checked={handleChecked("azul")}
+          onChange={handleChange}
+        />
+        Azul
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          value="vermelho"
+          checked={handleChecked("vermelho")}
+          onChange={handleChange}
+        />
+        Vermelho
       </label>
     </form>
   );
