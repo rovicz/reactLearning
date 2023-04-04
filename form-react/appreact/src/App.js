@@ -1,6 +1,84 @@
 import React, { useState } from "react";
 
-const formFields = [
+const App = () => {
+  return <div></div>;
+};
+
+export default App;
+
+// Código 01 - Primeira Alternativa:
+
+/* const App = () => {
+  const [nome, setNome] = React.useState("");
+  const [email, setEmail] = React.useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="nome">Nome</label>
+      <input
+        type="text"
+        id="nome"
+        name="nome"
+        value={nome}
+        onChange={(event) => setNome(event.target.value)}
+      />
+
+      <label htmlFor="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+      />
+
+      <button>Enviar</button>
+    </form>
+  );
+}; */
+
+// Código 02 - Segunda Alternativa:
+
+/* const App = () => {
+  const [form, setForm] = React.useState({
+    nome: "",
+    email: "",
+  });
+
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
+  function handleChange({ target }) {
+    const { id, value } = target;
+    setForm({ ...form, [id]: value });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="nome">Nome</label>
+      <input type="text" id="nome" value={form.nome} onChange={handleChange} />
+
+      <label htmlFor="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        value={form.email}
+        onChange={handleChange}
+      />
+
+      <button>Enviar</button>
+    </form>
+  );
+}; */
+
+// Código 03 - Formulário Simples:
+
+/* const formFields = [
   {
     id: "nome",
     label: "Nome",
@@ -93,76 +171,21 @@ const App = () => {
       <button>Enviar</button>
     </form>
   );
-};
-
-export default App;
-
-// Código 01 - Primeira Alternativa:
-
-/* const App = () => {
-  const [nome, setNome] = React.useState("");
-  const [email, setEmail] = React.useState("");
-
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="nome">Nome</label>
-      <input
-        type="text"
-        id="nome"
-        name="nome"
-        value={nome}
-        onChange={(event) => setNome(event.target.value)}
-      />
-
-      <label htmlFor="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-      />
-
-      <button>Enviar</button>
-    </form>
-  );
 }; */
 
-// Código 02 - Segunda Alternativa:
+// Código 04 - Textarea:
 
 /* const App = () => {
-  const [form, setForm] = React.useState({
-    nome: "",
-    email: "",
-  });
-
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
-
-  function handleChange({ target }) {
-    const { id, value } = target;
-    setForm({ ...form, [id]: value });
-  }
+  const [mensagem, setMensagem] = React.useState(null);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="nome">Nome</label>
-      <input type="text" id="nome" value={form.nome} onChange={handleChange} />
-
-      <label htmlFor="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        value={form.email}
-        onChange={handleChange}
+    <form>
+      <textarea
+        id="mensagem"
+        rows="5"
+        onChange={({ target }) => setMensagem(target.value)}
       />
 
-      <button>Enviar</button>
+      <p>{mensagem}</p>
     </form>
-  );
-}; */
+  ); */
