@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const App = () => {
   return <div></div>;
@@ -189,3 +189,60 @@ const App = () => {
       <p>{mensagem}</p>
     </form>
   ); */
+
+// Código 05 - Selection:
+
+/* const App = () => {
+  const [select, setSelect] = React.useState("");
+  return (
+    <form>
+      <select
+        value={select}
+        onChange={({ target }) => setSelect(target.value)}
+        id="produtos"
+      >
+        <option disabled value="">
+          Selecione
+        </option>
+        <option value="notebook">Notebook</option>
+        <option value="smartphone">Smartphone</option>
+        <option value="tablet">Tablet</option>
+      </select>
+      {select}
+    </form>
+  );
+}; */
+
+// Código 06 - Select:
+
+/* const App = () => {
+  const [radio, setRadio] = React.useState(null);
+
+  function handleChange({ target }) {
+    setRadio(target.value);
+  }
+
+  return (
+    <form>
+      <label>
+        <input
+          type="radio"
+          value="notebook"
+          checked={radio === "notebook"}
+          onChange={handleChange}
+        />
+        Notebook
+      </label>
+
+      <label>
+        <input
+          type="radio"
+          value="smartphone"
+          checked={radio === "smartphone"}
+          onChange={handleChange}
+        />
+        Smartphone
+      </label>
+    </form>
+  );
+}; */
