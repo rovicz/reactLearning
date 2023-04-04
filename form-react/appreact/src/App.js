@@ -1,41 +1,16 @@
 import React from "react";
-
-const coresArray = ["azul", "roxo", "laranja", "verde", "vermelho", "cinza"];
+import Input from "./Form/Input";
 
 const App = () => {
-  const [cores, setCores] = React.useState([]);
-
-  function handleChange({ target }) {
-    const { checked, value } = target;
-    if (checked) {
-      setCores([...cores, target.value]);
-    } else {
-      setCores(cores.filter((cor) => cor !== value));
-    }
-  }
-
-  function handleChecked(cor) {
-    return cores.includes(cor);
-  }
+  const [nome, setNome] = React.useState("");
+  const [email, setEmail] = React.useState("");
 
   return (
     <form>
-      {coresArray.map((cor) => (
-        <label key={cor} style={{ textTransform: "capitalize" }}>
-          <input
-            type="checkbox"
-            value={cor}
-            checked={handleChecked(cor)}
-            onChange={handleChange}
-          />
-          {cor}
-        </label>
-      ))}
-      <ul>
-        {cores.map((cor) => (
-          <li key={cor}>{cor}</li>
-        ))}
-      </ul>
+      <Input id="nome" label="Nome" value={nome} setValue={setNome} required />
+      <Input id="email" label="Email" value={email} setValue={setEmail} />
+
+      <button>Enviar</button>
     </form>
   );
 };
@@ -283,7 +258,7 @@ const App = () => {
   );
 }; */
 
-// Código 07 - Checkbox:
+// Código 07 - Checkbox 1/2:
 
 /* const App = () => {
   const [cores, setCores] = React.useState([]);
@@ -320,6 +295,48 @@ const App = () => {
         />
         Vermelho
       </label>
+    </form>
+  );
+}; */
+
+// Código 08 - Checkbox 2/2:
+
+/* const coresArray = ['azul', 'roxo', 'laranja', 'verde', 'vermelho', 'cinza'];
+
+const App = () => {
+  const [cores, setCores] = React.useState([]);
+
+  function handleChange({ target }) {
+    const { checked, value } = target;
+    if (checked) {
+      setCores([...cores, target.value]);
+    } else {
+      setCores(cores.filter((cor) => cor !== value));
+    }
+  }
+
+  function handleChecked(cor) {
+    return cores.includes(cor);
+  }
+
+  return (
+    <form>
+      {coresArray.map((cor) => (
+        <label key={cor} style={{ textTransform: 'capitalize' }}>
+          <input
+            type="checkbox"
+            value={cor}
+            checked={handleChecked(cor)}
+            onChange={handleChange}
+          />
+          {cor}
+        </label>
+      ))}
+      <ul>
+        {cores.map((cor) => (
+          <li key={cor}>{cor}</li>
+        ))}
+      </ul>
     </form>
   );
 }; */
