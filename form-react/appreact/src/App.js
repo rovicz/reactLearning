@@ -1,40 +1,53 @@
 import React from "react";
 import Input from "./Form/Input";
-import Select from "./Form/Select";
-import Radio from "./Form/Radio";
-import Checkbox from "./Form/Checkbox";
 
 const App = () => {
-  const [nome, setNome] = React.useState("");
-  const [email, setEmail] = React.useState("");
-  const [produto, setProduto] = React.useState("");
-  const [cor, setCor] = React.useState("");
-  const [lang, setLang] = React.useState([]);
+  const [cep, setCep] = React.useState("");
+  const [error, setError] = React.useState(null);
+
+  function validateCep(value) {
+    if (value.length === 0) {
+      setError("Preencha um valor.");
+      return false;
+    } else if (!/^\d{5}-?\d{3}$/.test(value)) {
+      setError("Preencha o CEP corretamente.");
+      return false;
+    } else {
+      setError(null);
+      return true;
+    }
+  }
+
+  function handleBlur({ target }) {
+    validateCep(target.value);
+  }
+
+  function handleChange({ target }) {
+    if (error) validateCep(target.value);
+    setCep(target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (validateCep(cep)) {
+      console.log("Enviado com Sucesso."); // em um caso real, faria o fetch com submit.
+    } else {
+      console.log("Erro, CEP não enviado."); // em um caso real, faria a demonstração do erro para o usuário.
+    }
+  }
 
   return (
-    <form>
-      <h2>Linguagens</h2>
-      <Checkbox
-        options={["React", "Javascript", "HTML", "CSS"]}
-        value={lang}
-        setValue={setLang}
+    <form onSubmit={handleSubmit}>
+      <Input
+        label="CEP"
+        id="cep"
+        type="text"
+        value={cep}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        placeholder="00000-000"
       />
-
-      <h2>Cores</h2>
-      <Radio options={["Azul", "Vermelho"]} value={cor} setValue={setCor} />
-
-      <h2>Aparelhos</h2>
-      <Select
-        options={["Tablet", "Smartphone"]}
-        value={produto}
-        setValue={setProduto}
-      />
-
-      <h2>Usuário</h2>
-      <Input id="nome" label="Nome" value={nome} setValue={setNome} required />
-      <Input id="email" label="Email" value={email} setValue={setEmail} />
-
-      <button>Enviar</button>
+      {error && <p>{error}</p>}
     </form>
   );
 };
@@ -361,6 +374,43 @@ const App = () => {
           <li key={cor}>{cor}</li>
         ))}
       </ul>
+    </form>
+  );
+}; */
+
+// Código 09 - Form(Input, Select, Radio & Checkbox):
+
+/* const App = () => {
+  const [nome, setNome] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [produto, setProduto] = React.useState("");
+  const [cor, setCor] = React.useState("");
+  const [lang, setLang] = React.useState([]);
+
+  return (
+    <form>
+      <h2>Linguagens</h2>
+      <Checkbox
+        options={["React", "Javascript", "HTML", "CSS"]}
+        value={lang}
+        setValue={setLang}
+      />
+
+      <h2>Cores</h2>
+      <Radio options={["Azul", "Vermelho"]} value={cor} setValue={setCor} />
+
+      <h2>Aparelhos</h2>
+      <Select
+        options={["Tablet", "Smartphone"]}
+        value={produto}
+        setValue={setProduto}
+      />
+
+      <h2>Usuário</h2>
+      <Input id="nome" label="Nome" value={nome} setValue={setNome} required />
+      <Input id="email" label="Email" value={email} setValue={setEmail} />
+
+      <button>Enviar</button>
     </form>
   );
 }; */
