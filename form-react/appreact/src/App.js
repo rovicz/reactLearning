@@ -1,38 +1,16 @@
 import React from "react";
 import Input from "./Form/Input";
+import useForm from "./Hooks/useForm";
 
 const App = () => {
-  const [cep, setCep] = React.useState("");
-  const [error, setError] = React.useState(null);
-
-  function validateCep(value) {
-    if (value.length === 0) {
-      setError("Preencha um valor.");
-      return false;
-    } else if (!/^\d{5}-?\d{3}$/.test(value)) {
-      setError("Preencha o CEP corretamente.");
-      return false;
-    } else {
-      setError(null);
-      return true;
-    }
-  }
-
-  function handleBlur({ target }) {
-    validateCep(target.value);
-  }
-
-  function handleChange({ target }) {
-    if (error) validateCep(target.value);
-    setCep(target.value);
-  }
+  const cep = useForm("cep");
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (validateCep(cep)) {
-      console.log("Enviado com Sucesso."); // em um caso real, faria o fetch com submit.
+    if (cep.validate()) {
+      console.log("Enviar");
     } else {
-      console.log("Erro, CEP não enviado."); // em um caso real, faria a demonstração do erro para o usuário.
+      console.log("Não enviar");
     }
   }
 
@@ -42,12 +20,10 @@ const App = () => {
         label="CEP"
         id="cep"
         type="text"
-        value={cep}
-        onChange={handleChange}
-        onBlur={handleBlur}
         placeholder="00000-000"
+        {...cep}
       />
-      {error && <p>{error}</p>}
+      <button>Enviar</button>
     </form>
   );
 };
@@ -411,6 +387,59 @@ const App = () => {
       <Input id="email" label="Email" value={email} setValue={setEmail} />
 
       <button>Enviar</button>
+    </form>
+  );
+}; */
+
+// Código 10 - Validação:
+
+/* const App = () => {
+  const [cep, setCep] = React.useState("");
+  const [error, setError] = React.useState(null);
+
+  function validateCep(value) {
+    if (value.length === 0) {
+      setError("Preencha um valor.");
+      return false;
+    } else if (!/^\d{5}-?\d{3}$/.test(value)) {
+      setError("Preencha o CEP corretamente.");
+      return false;
+    } else {
+      setError(null);
+      return true;
+    }
+  }
+
+  function handleBlur({ target }) {
+    validateCep(target.value);
+  }
+
+  function handleChange({ target }) {
+    if (error) validateCep(target.value);
+    setCep(target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (validateCep(cep)) {
+      console.log("Enviado com Sucesso."); // em um caso real, faria o fetch com submit.
+    } else {
+      console.log("Erro, CEP não enviado."); // em um caso real, faria a demonstração do erro para o usuário.
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <Input
+        label="CEP"
+        id="cep"
+        type="text"
+        value={cep}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        placeholder="00000-000"
+      />
+      {error && <p>{error}</p>}
     </form>
   );
 }; */
