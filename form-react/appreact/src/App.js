@@ -1,30 +1,26 @@
 import React from "react";
-import Input from "./Form/Input";
-import useForm from "./Hooks/useForm";
+import Slide from "./Slide";
 
 const App = () => {
-  const cep = useForm("cep");
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    if (cep.validate()) {
-      console.log("Enviar");
-    } else {
-      console.log("Não enviar");
-    }
-  }
+  const slides = [
+    {
+      id: "slide1",
+      text: "Slide 1",
+    },
+    {
+      id: "slide2",
+      text: "Slide 2",
+    },
+    {
+      id: "slide3",
+      text: "Slide 3",
+    },
+  ];
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Input
-        label="CEP"
-        id="cep"
-        type="text"
-        placeholder="00000-000"
-        {...cep}
-      />
-      <button>Enviar</button>
-    </form>
+    <div>
+      <Slide slides={slides} />
+    </div>
   );
 };
 
