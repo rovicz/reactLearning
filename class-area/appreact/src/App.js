@@ -1,32 +1,42 @@
 import React from "react";
-import ProdutoEffect from "./ProdutoEffect";
+import useLocalStorage from "./Hooks/useLocalStorage";
+import useFetch from "./Hooks/useFetch";
 
 const App = () => {
-  const [produto, setProduto] = React.useState(null);
+  const [produto, setProduto] = useLocalStorage("produto", "");
+  const { request, data, loading, erro } = useFetch();
+
+  React.useEffect(() => {
+    async function fecthData() {
+      const { response, json } = await request(
+        "https://ranekapi.origamid.dev/json/api/produto"
+      );
+    }
+
+    fecthData();
+  }, [request]);
 
   function handleClick({ target }) {
     setProduto(target.innerText);
   }
 
-  React.useEffect(() => {
-    const produtoLocal = window.localStorage.getItem("produto");
-    if (produtoLocal !== null) setProduto(produtoLocal);
-  }, []);
+  if (erro) return <p>{erro}</p>;
+  if (loading) return <p>Carregando...</p>;
+  if (data)
+    return (
+      <div>
+        <p>Produto: {produto}</p>
+        <button onClick={handleClick}>Notebook</button>
+        <button onClick={handleClick}>Smartphone</button>
 
-  React.useEffect(() => {
-    if (produto === null) window.localStorage.setItem("produto", produto);
-  }, [produto]);
-
-  return (
-    <div>
-      <h1>Preferência: {produto}</h1>
-      <button onClick={handleClick} style={{ marginRight: "1rem" }}>
-        Notebook
-      </button>
-      <button onClick={handleClick}>Smartphone</button>
-      <ProdutoEffect produto={produto} />
-    </div>
-  );
+        {data.map((produto) => (
+          <div key={produto.id}>
+            <h1>{produto.nome}</h1>
+          </div>
+        ))}
+      </div>
+    );
+  else return null;
 };
 
 export default App;
@@ -62,7 +72,7 @@ const mario = {
 
 const App = () => {
   const dados = mario;
-  const valorTotal = dados.compras.map((item) => 
+  const valorTotal = dados.compras.map((item) =>
     Number(item.preco.replace('R$ ', '')))
     .reduce((a, b) => a + b);
 
@@ -126,7 +136,7 @@ const produtos = [
 const App = () => {
   return (
     <section>
-      {produtos.filter((produto) => Number(produto.preco.replace('R$ ', '')) > 1500) 
+      {produtos.filter((produto) => Number(produto.preco.replace('R$ ', '')) > 1500)
             .map((produto) => (
               <div key={produto.id}>
                 <h1>{produto.nome}</h1>
@@ -148,7 +158,7 @@ const App = () => {
 
 /* const App = () => {
   const {pathname} = window.location;
-  
+
   let Pagina;
   if(pathname === '/produtos') {
     Pagina = Produtos;
@@ -222,3 +232,37 @@ const App = () => {
     </div>
   );
 }; */
+
+// Código 07 - useRef:
+
+/* const App = () => {
+  const [carrinho, setCarrinho] = React.useState(0);
+  const [notificacao, setNotificacao] = React.useState(null);
+  const refNotificacao = React.useRef();
+
+  function handleClick() {
+    setCarrinho(carrinho + 1);
+    setNotificacao("Item adicionado ao Carrinho.");
+
+    clearTimeout(refNotificacao.current);
+    refNotificacao.current = setTimeout(() => {
+      setNotificacao(null);
+    }, 2000);
+  }
+
+  return (
+    <div>
+      <p ref={refNotificacao}>{notificacao}</p>
+      <button onClick={handleClick}>Adicionar Carrinho {carrinho}</button>
+    </div>
+  ); */
+
+// Código 08 - createContext & useContext (necessário os arquivos 'GlobalContext' e 'ProdutoContext' para compreender o código final):
+
+/* const App = () => {
+  return (
+    <GlobalStorage>
+      <ProdutoContext />
+    </GlobalStorage>
+  );
+  */
