@@ -1,13 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Input from "../Forms/Input";
-import Button from "../Forms/Button";
-import UseForm from "../../Hooks/UseForm";
-import { UserContext } from "../../UserContext";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Input from '../Forms/Input';
+import Button from '../Forms/Button';
+import useForm from '../../Hooks/useForm';
+import { UserContext } from '../../UserContext';
 
 const LoginForm = () => {
-  const username = UseForm();
-  const password = UseForm();
+  const username = useForm();
+  const password = useForm();
 
   const { userLogin } = React.useContext(UserContext);
 

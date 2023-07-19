@@ -1,5 +1,5 @@
-import React from "react";
-import { TOKEN_POST, USER_GET } from "./api";
+import React from 'react';
+import { TOKEN_POST, USER_GET } from './api';
 
 export const UserContext = React.createContext();
 
@@ -11,8 +11,8 @@ export const UserStorage = ({ children }) => {
 
   async function getUser(token) {
     const { url, options } = USER_GET(token);
-    const r = await fetch(url, options);
-    const json = await r.json();
+    const response = await fetch(url, options);
+    const json = await response.json();
     setData(json);
     setLogin(true);
   }
@@ -21,7 +21,7 @@ export const UserStorage = ({ children }) => {
     const { url, options } = TOKEN_POST({ username, password });
     const tokenRes = await fetch(url, options);
     const { token } = await tokenRes.json();
-    window.localStorage.setItem("token", token);
+    window.localStorage.setItem('token', token);
     getUser(token);
   }
 
