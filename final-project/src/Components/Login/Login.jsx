@@ -1,10 +1,10 @@
-import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import LoginForm from "./LoginForm";
-import LoginCreate from "./LoginCreate";
-import LoginPasswordLost from "./LoginPasswordLost";
-import LoginPasswordReset from "./LoginPasswordReset";
-import { UserContext } from "../../UserContext";
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import LoginForm from './LoginForm';
+import LoginCreate from './LoginCreate';
+import LoginPasswordLost from './LoginPasswordLost';
+import LoginPasswordReset from './LoginPasswordReset';
+import { UserContext } from '../../UserContext';
 
 const Login = () => {
   const { login } = React.useContext(UserContext);
