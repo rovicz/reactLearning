@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./Button";
 import Input from "./Input";
+import ButtonIT from "./ButtonIT";
 
 function App() {
   const [total, setTotal] = React.useState(0);
@@ -17,6 +18,8 @@ function App() {
       <Input id="nome" label="Nome" />
       <Input id="inicio" label="Inicio da Viagem" type="date" />
       <Input id="horario" label="Horário" type="time" />
+
+      <ButtonIT total={total} setTotal={setTotal} />
     </div>
   );
 }
