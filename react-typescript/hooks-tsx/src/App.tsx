@@ -10,6 +10,8 @@ type Venda = {
 };
 
 function App() {
+  // Uso de useState.
+
   const [inicio, setInicio] = React.useState("");
   const [final, setFinal] = React.useState("");
   const [data, setData] = React.useState<null | Venda[]>(null);
@@ -25,6 +27,25 @@ function App() {
       );
     }
   }, [inicio, final]);
+
+  React.useEffect(() => {
+    console.log("useEffect sendo aplicado.");
+    return () => {
+      console.log("Função sendo montada dentro do useEffect.");
+    };
+  }, []);
+  // o useEffect sempre retorna outra função e somente OUTRA FUNÇÃO.
+
+  // Exemplo 2:
+
+  function useEffectExample() {
+    console.log("useEffect - Exemplo 2");
+    return () => {
+      console.log("Função sendo montada dentro do useEffect - Exemplo 2.");
+    };
+  }
+
+  React.useEffect(useEffectExample, []);
 
   return (
     <div>
