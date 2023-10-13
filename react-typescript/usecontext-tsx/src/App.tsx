@@ -1,14 +1,14 @@
 import React from "react";
-import { UiContextProvider } from "./UiContext";
-import Header from "./Header";
-import Content from "./Content";
+import HeaderAtv from "./HeaderAtv";
+import ContentAtv from "./ContentAtv";
+import { UiContextProviderAtv } from "./UiContextAtv";
 
 function App() {
   return (
-    <UiContextProvider>
-      <Header />
-      <Content />
-    </UiContextProvider>
+    <UiContextProviderAtv>
+      <HeaderAtv />
+      <ContentAtv />
+    </UiContextProviderAtv>
   );
 }
 
