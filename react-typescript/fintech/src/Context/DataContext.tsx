@@ -15,7 +15,7 @@ type IVenda = {
   id: string;
   nome: string;
   preco: number;
-  status: "falha" | "pago" | "procesando";
+  status: "falha" | "pago" | "processando";
   pagamento: "cartao" | "pix" | "boleto";
   parcelas: number;
   data: string;
