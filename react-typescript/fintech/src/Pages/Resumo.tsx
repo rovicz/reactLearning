@@ -7,7 +7,7 @@ const Resumo = () => {
   if (data === null) return null;
   return (
     <section>
-      <div>
+      <div className="resumo flex mb">
         <div className="box">
           <h2>Vendas</h2>
           <span>
@@ -37,6 +37,7 @@ const Resumo = () => {
           </span>
         </div>
       </div>
+      <div className="box mb">Gráficos</div>
     </section>
   );
 };
