@@ -16,12 +16,12 @@ function useFetch<T>(url: RequestInfo | URL, options?: RequestInit) {
       setLoading(true);
       setData(null);
       try {
-        const r = await fetch(url, {
+        const response = await fetch(url, {
           signal,
           ...optionsRef.current,
         });
-        if (!r.ok) throw new Error(`Error: ${r.status}`);
-        const json = (await r.json()) as T;
+        if (!response.ok) throw new Error(`Error: ${response.status}`);
+        const json = (await response.json()) as T;
         if (!signal.aborted) setData(json);
       } catch (error) {
         if (!signal.aborted && error instanceof Error) setError(error.message);

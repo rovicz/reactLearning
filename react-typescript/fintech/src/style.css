@@ -131,6 +131,12 @@ ul {
   color: var(--color-1);
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Venda  */
 
 .venda {
