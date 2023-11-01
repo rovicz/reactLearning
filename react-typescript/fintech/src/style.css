@@ -103,6 +103,7 @@ ul {
   font-size: 1.125rem;
   text-decoration: none;
   color: var(--color-1);
+  margin: 0.25rem 0;
   padding: var(--gap-s) 0;
 }
 
@@ -129,12 +130,6 @@ ul {
   font-size: 1.5rem;
   margin-bottom: var(--gap);
   color: var(--color-1);
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 /* Venda  */
